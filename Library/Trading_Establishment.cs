@@ -1,6 +1,6 @@
 ﻿/*
  * @author Shypunov Mykyta
- * @soauthot Cholombytko Margo
+ * @soauthot Arseniy Zaria
  */
 using System;
 namespace Library_Classes
