@@ -3,12 +3,17 @@
  * @soauthot Arseniy Zaria
  */
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Data.Metadata.Edm;
+
 namespace Library_Classes
 {
     /// <summary>
     /// Родительский класс - торговая площадка
     /// </summary>
-    public abstract class Trading_Establishment
+    
+    public abstract class Trading_Establishment : IComparable<Trading_Establishment>, IComparable
     {
         /// <summary>
         /// Площадь территории торговой площадки (в квадрытных метрах)
@@ -152,8 +157,27 @@ namespace Library_Classes
         /// <returns></returns>
         public virtual string PrintInfo(Trading_Establishment obj)
         {
-            string s = "Название -> " + area + "\nВладелец -> " + owner + "\nАдресс -> " + area + "\nПлощадь торговой площадки -> " + area + "\n";
+            string s = "Название -> " + name + "\nВладелец -> " + owner + "\nАдресс -> " + location + "\nПлощадь торговой площадки -> " + area + "\n";
             return s;
+        }
+        /// <summary>
+        /// Реализация интерфейса IComparable<T>
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
+        public int CompareTo(Trading_Establishment other)
+        {
+            return this.Name.CompareTo(other.Name);
+        }
+        /// <summary>
+        /// Реализация интерфейса IComparable
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public int CompareTo(object obj)
+        {
+            Trading_Establishment tr = obj as Trading_Establishment;
+            return this.Name.CompareTo(tr.Name);
         }
     }
     /// <summary>
@@ -198,13 +222,13 @@ namespace Library_Classes
         /// <param name="MobileApp"></param>
         public Supermarket(string Name, string Owner, int CountOfCashier, bool BonusCards, int CountOfProducts, bool MobileApp) : base(Name, Owner)
         {
-            if (CountOfCashier < 1 || CountsOfProducts < 1)
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Введены не корректные данные");
-                Console.ForegroundColor = ConsoleColor.White;
-                return;
-            }
+            //if (CountOfCashier < 1 || CountsOfProducts < 1)
+            //{
+            //    Console.ForegroundColor = ConsoleColor.Red;
+            //    Console.WriteLine("Введены не корректные данные");
+            //    Console.ForegroundColor = ConsoleColor.White;
+            //    return;
+            //}
             countofcashier = CountOfCashier;
             bonuscards = BonusCards;
             countofproducts = CountOfProducts;
